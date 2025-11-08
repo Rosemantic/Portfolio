@@ -1,0 +1,79 @@
+/* ========================================
+   Responsive Styles - 响应式样式
+   全局响应式调整（最后加载）
+   ======================================== */
+
+/* ===== 桌面端（≥1024px） ===== */
+@media screen and (min-width: 1024px) {
+  /* 桌面端特定样式 */
+}
+
+/* ===== 平板端（768px - 1023px） ===== */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  /* 平板端特定样式 */
+  html {
+    font-size: 15px;
+  }
+}
+
+/* ===== 移动端（≤767px） ===== */
+@media screen and (max-width: 767px) {
+  html {
+    font-size: 14px;
+  }
+  
+  /* 移动端字体大小调整 */
+  :root {
+    --font-size-h1: clamp(2.5rem, 10vw, 4rem);
+    --font-size-h2: clamp(2rem, 8vw, 3rem);
+    --font-size-h3: clamp(1.5rem, 6vw, 2rem);
+  }
+}
+
+/* ===== 小屏移动端（≤480px） ===== */
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* ===== 超大屏幕（≥1440px） ===== */
+@media screen and (min-width: 1440px) {
+  :root {
+    --container-max-width: 1600px;
+  }
+}
+
+/* ===== 触摸设备优化 ===== */
+@media (hover: none) and (pointer: coarse) {
+  /* 增大触摸目标尺寸 */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ===== 横屏移动设备 ===== */
+@media screen and (max-height: 500px) and (orientation: landscape) {
+  .nav-fullscreen__menu {
+    gap: var(--spacing-sm);
+  }
+  
+  .nav-fullscreen__link {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+}
+
+/* ===== 打印样式 ===== */
+@media print {
+  .header,
+  .nav-fullscreen,
+  .header__menu-btn {
+    display: none !important;
+  }
+  
+  main {
+    padding-top: 0;
+  }
+}

@@ -1,0 +1,68 @@
+/* ========================================
+   Main Styles - 主样式文件
+   页面特定样式
+   ======================================== */
+
+/* ===== 页面加载动画初始状态 ===== */
+.header__logo,
+.header__menu-btn,
+.hero h1,
+.hero p {
+  opacity: 0;
+}
+
+/* ===== 页面切换过渡 ===== */
+main {
+  transition: opacity var(--transition-smooth);
+}
+
+/* ===== Hero 区域样式 ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  padding: var(--spacing-2xl) 0;
+}
+
+.hero .container {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.hero h1 {
+  font-size: var(--font-size-h1);
+  margin-bottom: var(--spacing-md);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-bold);
+}
+
+.hero p {
+  font-size: var(--font-size-large);
+  color: rgba(39, 39, 39, 0.7);
+  line-height: var(--line-height-normal);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ===== 当 JS 加载完成后显示内容 ===== */
+.js-loaded .header__logo,
+.js-loaded .header__menu-btn,
+.js-loaded .hero h1,
+.js-loaded .hero p {
+  /* 初始隐藏状态会被 GSAP 覆盖 */
+}
+
+/* ===== 响应式 ===== */
+@media screen and (max-width: 767px) {
+  .hero {
+    padding: var(--spacing-xl) 0;
+  }
+  
+  .hero p {
+    font-size: var(--font-size-base);
+  }
+}
