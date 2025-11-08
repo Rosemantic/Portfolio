@@ -48,14 +48,6 @@ main {
   margin: 0 auto;
 }
 
-/* ===== 当 JS 加载完成后显示内容 ===== */
-.js-loaded .header__logo,
-.js-loaded .header__menu-btn,
-.js-loaded .hero h1,
-.js-loaded .hero p {
-  /* 初始隐藏状态会被 GSAP 覆盖 */
-}
-
 /* ===== 响应式 ===== */
 @media screen and (max-width: 767px) {
   .hero {

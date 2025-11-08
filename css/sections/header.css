@@ -22,10 +22,9 @@ body.menu-open .header {
 }
 
 .header__container {
-  max-width: 100%;  /* 使用全屏宽度 */
+  width: 100%;
   height: 100%;
-  margin: 0 auto;
-  padding: 0 var(--spacing-lg);  /* 减少内边距，靠近边缘 32px */
+  padding: 0 var(--spacing-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -108,12 +107,6 @@ body.menu-open .header__logo-img {
   visibility: hidden;
 }
 
-/* 菜单打开状态 */
-.nav-fullscreen.is-open {
-  transform: translateY(0);
-  visibility: visible;
-}
-
 .nav-fullscreen__container {
   width: 100%;
   max-width: var(--container-max-width);
@@ -184,14 +177,10 @@ body.menu-open .header__logo-img {
   right: 0;
 }
 
-/* 悬停效果由 GSAP 控制 */
-
 /* 当前页面的菜单项高亮 */
 .nav-fullscreen__link.is-active {
   color: rgba(255, 255, 255, 0.5);
 }
-
-/* 菜单打开时的动画状态由GSAP控制 */
 
 /* ===== 菜单底部信息 ===== */
 .nav-fullscreen__footer {
@@ -202,11 +191,6 @@ body.menu-open .header__logo-img {
   /* 初始状态：透明 */
   opacity: 0;
   transform: translateY(20px);
-}
-
-.nav-fullscreen.is-open .nav-fullscreen__footer {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .nav-fullscreen__footer-text {
@@ -259,10 +243,8 @@ body.menu-open .header__logo-img {
 
 /* 平板端 */
 @media screen and (max-width: 1023px) {
-  /* 高度由 clamp 自动响应 */
-  
   .header__container {
-    padding: 0 var(--spacing-md);  /* 平板端：24px */
+    padding: 0 var(--spacing-md);
   }
   
   .header__menu-btn {
@@ -274,19 +256,15 @@ body.menu-open .header__logo-img {
     width: 26px;
   }
   
-  .nav-fullscreen__link {
-    font-size: clamp(2rem, 8vw, 3.5rem);
-  }
-  
   .nav-fullscreen__container {
-    padding: var(--spacing-xl) var(--header-padding-mobile);
+    padding: var(--spacing-xl) var(--spacing-md);
   }
 }
 
 /* 移动端 */
 @media screen and (max-width: 767px) {
   .header__container {
-    padding: 0 var(--spacing-md);  /* 移动端：24px */
+    padding: 0 var(--spacing-md);
   }
   
   .nav-fullscreen__footer {
@@ -303,8 +281,6 @@ body.menu-open .header__logo-img {
   .nav-fullscreen__menu {
     gap: var(--spacing-sm);
   }
-  
-  /* Logo 尺寸由 clamp 自动响应 */
   
   .header__menu-btn {
     width: 40px;
