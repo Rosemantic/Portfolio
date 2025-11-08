@@ -104,7 +104,8 @@ html {
 
 /* ===== 主要内容区域（考虑固定导航栏高度） ===== */
 main {
-  padding-top: var(--header-height);
+  /* 使用 clamp 自动适配导航栏高度 */
+  padding-top: clamp(60px, 8vh, 80px);
   min-height: 100vh;
 }
 
@@ -140,9 +141,7 @@ section {
 
 /* ===== 响应式 ===== */
 @media screen and (max-width: 1023px) {
-  main {
-    padding-top: var(--header-height-mobile);
-  }
+  /* padding-top 由 clamp 自动适配 */
   
   section {
     padding: var(--spacing-3xl) 0;

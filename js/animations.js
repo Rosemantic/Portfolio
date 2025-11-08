@@ -107,18 +107,18 @@ document.addEventListener('DOMContentLoaded', function() {
   // ===== 鼠标跟随效果（可选） =====
   
   // 自定义光标（如果需要）
-  // const cursor = document.createElement('div');
-  // cursor.classList.add('custom-cursor');
-  // document.body.appendChild(cursor);
+  const cursor = document.createElement('div');
+  cursor.classList.add('custom-cursor');
+  document.body.appendChild(cursor);
   
-  // document.addEventListener('mousemove', (e) => {
-  //   gsap.to(cursor, {
-  //     x: e.clientX,
-  //     y: e.clientY,
-  //     duration: 0.3,
-  //     ease: 'power2.out'
-  //   });
-  // });
+  document.addEventListener('mousemove', (e) => {
+    gsap.to(cursor, {
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.3,
+      ease: 'power2.out'
+    });
+  });
   
   // ===== 视差效果示例 =====
   
