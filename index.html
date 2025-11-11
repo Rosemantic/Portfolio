@@ -1,101 +1,157 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="HR Portfolio - 现代化个人作品集网站">
-  <meta name="keywords" content="portfolio, design, web development">
-  <meta name="author" content="HR">
-  
-  <title>HR Portfolio - 首页</title>
-  
-  <!-- Favicon -->
-  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
-  
-  <!-- Google Fonts: Poppins (使用国内CDN镜像) -->
-  <link rel="preconnect" href="https://fonts.font.im">
-  <link href="https://fonts.font.im/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- CSS 样式表 - 按顺序加载 -->
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/sections/header.css">
-  <link rel="stylesheet" href="css/responsive.css">
-</head>
-<body>
-  
-  <!-- 导航栏 -->
-  <header class="header">
-    <div class="header__container">
-      <!-- Logo -->
-      <a href="index.html" class="header__logo">
-        <img src="assets/icons/Logo.svg" alt="HR Logo" class="header__logo-img">
-      </a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="HR Portfolio - 现代化个人作品集网站" />
+    <meta name="keywords" content="portfolio, design, web development" />
+    <meta name="author" content="HR" />
 
-      <!-- 菜单按钮 -->
-      <button class="header__menu-btn" aria-label="打开导航菜单" aria-expanded="false">
-        <span class="header__menu-line"></span>
-        <span class="header__menu-line"></span>
-      </button>
-    </div>
-  </header>
+    <title>HR Portfolio - 首页</title>
 
-  <!-- 全屏导航菜单 -->
-  <nav class="nav-fullscreen">
-    <div class="nav-fullscreen__container">
-      <!-- 菜单列表 -->
-      <ul class="nav-fullscreen__menu">
-        <li class="nav-fullscreen__item">
-          <a href="index.html" class="nav-fullscreen__link">HOME</a>
-        </li>
-        <li class="nav-fullscreen__item">
-          <a href="about.html" class="nav-fullscreen__link">ABOUT</a>
-        </li>
-        <li class="nav-fullscreen__item">
-          <a href="works.html" class="nav-fullscreen__link">WORKS</a>
-        </li>
-        <li class="nav-fullscreen__item">
-          <a href="contact.html" class="nav-fullscreen__link">CONTACT</a>
-        </li>
-      </ul>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg" />
 
-      <!-- 底部信息 -->
-      <div class="nav-fullscreen__footer">
-        <p class="nav-fullscreen__footer-text">© 2025 HR Portfolio</p>
-        <div class="nav-fullscreen__social">
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" class="nav-fullscreen__social-link">GitHub</a>
-          <a href="#" class="nav-fullscreen__social-link">QQ</a>
-          <a href="#" class="nav-fullscreen__social-link">WeChat</a>
+    <!-- Google Fonts: Poppins (使用国内CDN镜像) -->
+    <link rel="preconnect" href="https://fonts.font.im" />
+    <link
+      href="https://fonts.font.im/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS 样式表 - 按顺序加载 -->
+    <link rel="stylesheet" href="css/reset.css?v=2" />
+    <link rel="stylesheet" href="css/variables.css?v=2" />
+    <link rel="stylesheet" href="css/base.css?v=2" />
+    <link rel="stylesheet" href="css/style.css?v=2" />
+    <link rel="stylesheet" href="css/sections/header.css?v=2" />
+    <link rel="stylesheet" href="css/responsive.css?v=2" />
+  </head>
+  <body>
+    <!-- 导航栏 -->
+    <header class="header">
+      <div class="header__container">
+        <!-- Logo -->
+        <a href="index.html" class="header__logo">
+          <img
+            src="assets/icons/Logo.svg"
+            alt="HR Logo"
+            class="header__logo-img"
+          />
+        </a>
+
+        <!-- 菜单按钮 -->
+        <button
+          class="header__menu-btn"
+          aria-label="打开导航菜单"
+          aria-expanded="false"
+        >
+          <span class="header__menu-line"></span>
+          <span class="header__menu-line"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 全屏导航菜单 -->
+    <nav class="nav-fullscreen">
+      <div class="nav-fullscreen__container">
+        <!-- 左侧菜单区域 -->
+        <div class="nav-fullscreen__left">
+          <!-- 菜单列表 -->
+          <ul class="nav-fullscreen__menu">
+            <li class="nav-fullscreen__item">
+              <a href="index.html" class="nav-fullscreen__link" data-image="1"
+                >HOME</a
+              >
+            </li>
+            <li class="nav-fullscreen__item">
+              <a href="about.html" class="nav-fullscreen__link" data-image="2"
+                >ABOUT</a
+              >
+            </li>
+            <li class="nav-fullscreen__item">
+              <a href="works.html" class="nav-fullscreen__link" data-image="3"
+                >WORKS</a
+              >
+            </li>
+            <li class="nav-fullscreen__item">
+              <a href="contact.html" class="nav-fullscreen__link" data-image="4"
+                >CONTACT</a
+              >
+            </li>
+          </ul>
+
+          <!-- 底部信息 -->
+          <div class="nav-fullscreen__footer">
+            <p class="nav-fullscreen__footer-text">© 2025 HR Portfolio</p>
+            <div class="nav-fullscreen__social">
+              <a
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="nav-fullscreen__social-link"
+                >GitHub</a
+              >
+              <a href="#" class="nav-fullscreen__social-link">QQ</a>
+              <a href="#" class="nav-fullscreen__social-link">WeChat</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧图片区域 -->
+        <div class="nav-fullscreen__right">
+          <div class="nav-fullscreen__image-container">
+            <img
+              src="assets/images/1.jpg"
+              alt="Home"
+              class="nav-fullscreen__image"
+              data-image="1"
+            />
+            <img
+              src="assets/images/2.jpg"
+              alt="About"
+              class="nav-fullscreen__image"
+              data-image="2"
+            />
+            <img
+              src="assets/images/3.jpg"
+              alt="Works"
+              class="nav-fullscreen__image"
+              data-image="3"
+            />
+            <img
+              src="assets/images/4.jpg"
+              alt="Contact"
+              class="nav-fullscreen__image"
+              data-image="4"
+            />
+          </div>
         </div>
       </div>
-    </div>
-  </nav>
+    </nav>
 
-  <!-- 主内容区域 -->
-  <main>
-    <!-- Hero 区域（占位） -->
-    <section class="hero">
-      <div class="container">
-        <h1>欢迎来到我的作品集</h1>
-        <p>现代化、响应式、流畅动画</p>
-      </div>
-    </section>
-  </main>
+    <!-- 主内容区域 -->
+    <main>
+      <!-- Hero 区域（占位） -->
+      <section class="hero">
+        <div class="container">
+          <h1>欢迎来到我的作品集</h1>
+          <p>现代化、响应式、流畅动画</p>
+        </div>
+      </section>
+    </main>
 
-  <!-- JavaScript 库和脚本 - 按顺序加载 -->
-  <!-- GSAP 核心库 -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
-  <!-- GSAP ScrollTrigger 插件 -->
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
-  <!-- Lenis 平滑滚动 -->
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.min.js"></script>
-  
-  <!-- 项目脚本 -->
-  <script src="js/main.js"></script>
-  <script src="js/navigation.js"></script>
-  <script src="js/animations.js"></script>
+    <!-- JavaScript 库和脚本 - 按顺序加载 -->
+    <!-- GSAP 核心库 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger 插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <!-- Lenis 平滑滚动 -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.min.js"></script>
 
-</body>
+    <!-- 项目脚本 -->
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+  </body>
 </html>

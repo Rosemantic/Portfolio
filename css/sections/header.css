@@ -105,16 +105,79 @@ body.menu-open .header__logo-img {
   /* 初始状态：隐藏在上方 */
   transform: translateY(-100%);
   visibility: hidden;
+  overflow: hidden; /* 隐藏所有溢出内容 */
 }
 
 .nav-fullscreen__container {
   width: 100%;
-  max-width: var(--container-max-width);
-  padding: var(--spacing-2xl) var(--header-padding);
+  height: 100%;
+  display: grid;
+  grid-template-columns: 11fr 9fr; /* 左右分屏：55% 45% (11:9比例) */
+  position: relative;
+}
+
+/* ===== 左侧菜单区域 ===== */
+.nav-fullscreen__left {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: var(--spacing-2xl) var(--spacing-2xl);
+  position: relative;
+  z-index: 2;
+  overflow: hidden; /* 限制内容不超出左侧区域 */
+}
+
+/* ===== 右侧图片区域 ===== */
+.nav-fullscreen__right {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-text); /* 与导航背景一致 */
+}
+
+/* 图片容器 */
+.nav-fullscreen__image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   height: 100%;
+}
+
+/* 单个图片 */
+.nav-fullscreen__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  object-fit: cover;
+  object-position: center;
+  /* 黑白滤镜 */
+  filter: grayscale(100%) contrast(1.1);
+  /* 初始缩放 */
+  transform: scale(1.1) translateZ(0);
+  /* 性能优化 */
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  /* 图片渲染优化 */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  /* 强制 GPU 加速 */
+  -webkit-font-smoothing: subpixel-antialiased;
+  /* CSS 过渡（极速） */
+  transition: opacity 0.15s ease-out, transform 0.2s ease-out, visibility 0s linear 0s;
+}
+
+/* 激活的图片 */
+.nav-fullscreen__image.is-active {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1) translateZ(0);
 }
 
 /* ===== 菜单列表 ===== */
@@ -123,13 +186,15 @@ body.menu-open .header__logo-img {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: var(--spacing-md);
+  gap: 0.25rem; /* 4px - 非常小的间距 */
   flex: 1;
+  overflow: visible; /* 允许背景在菜单内溢出，但被父容器限制 */
 }
 
 .nav-fullscreen__item {
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
+  position: relative;
   /* 启用3D变换 */
   perspective: 1000px;
 }
@@ -141,11 +206,46 @@ body.menu-open .header__logo-img {
   text-transform: uppercase;
   letter-spacing: -0.02em;
   color: var(--color-white);
-  display: inline-block;
+  display: block; /* 改为 block 占满整行 */
+  width: 100%; /* 占满整个菜单宽度 */
   position: relative;
   overflow: visible;
   /* 启用3D变换 */
   transform-style: preserve-3d;
+  /* 添加内边距 */
+  padding: 0.4em 0;
+  /* 过渡效果 - 加快速度 */
+  transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 悬停时的背景（使用伪元素实现平滑过渡） */
+.nav-fullscreen__link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--spacing-2xl)); /* 向左延伸到容器边缘 */
+  right: calc(-1 * var(--spacing-2xl)); /* 向右延伸到容器边缘 */
+  width: auto;
+  height: 100%;
+  background-color: #F4F4F4; /* 浅灰色背景 */
+  border-radius: 0;
+  transform: scaleX(0);
+  transform-origin: left; /* 从左边开始展开 */
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  /* GPU 加速 */
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* 悬停时展开浅灰色背景 */
+.nav-fullscreen__link:hover::before {
+  transform: scaleX(1);
+}
+
+/* 悬停时文字变深灰 */
+.nav-fullscreen__link:hover {
+  color: #272727;
 }
 
 /* 字符包裹容器 - 用于字母交换动画 */
@@ -156,6 +256,7 @@ body.menu-open .header__logo-img {
   vertical-align: top;
   height: 1em;  /* 设置固定高度 */
   line-height: 1em;
+  z-index: 1;
 }
 
 /* 分割后的字符样式 */
@@ -256,7 +357,13 @@ body.menu-open .header__logo-img {
     width: 26px;
   }
   
+  /* 平板改为上下布局 */
   .nav-fullscreen__container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60% 40%;
+  }
+  
+  .nav-fullscreen__left {
     padding: var(--spacing-xl) var(--spacing-md);
   }
 }
@@ -265,6 +372,19 @@ body.menu-open .header__logo-img {
 @media screen and (max-width: 767px) {
   .header__container {
     padding: 0 var(--spacing-md);
+  }
+  
+  /* 移动端隐藏右侧图片区域 */
+  .nav-fullscreen__container {
+    grid-template-columns: 1fr;
+  }
+  
+  .nav-fullscreen__right {
+    display: none;
+  }
+  
+  .nav-fullscreen__left {
+    padding: var(--spacing-xl) var(--spacing-md);
   }
   
   .nav-fullscreen__footer {
@@ -279,7 +399,7 @@ body.menu-open .header__logo-img {
   }
   
   .nav-fullscreen__menu {
-    gap: var(--spacing-sm);
+    gap: 0.25rem; /* 保持一致的小间距 */
   }
   
   .header__menu-btn {
@@ -297,11 +417,11 @@ body.menu-open .header__logo-img {
   transform: translateY(-100%);
 }
 
-/* ===== 导航栏背景模糊效果（可选） ===== */
-@supports (backdrop-filter: blur(10px)) {
+/* ===== 导航栏背景模糊效果（已禁用） ===== */
+/* @supports (backdrop-filter: blur(10px)) {
   .header {
     background-color: rgba(244, 244, 244, 0.8);
     backdrop-filter: blur(10px);
   }
-}
+} */
 

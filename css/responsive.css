@@ -57,7 +57,7 @@
 /* ===== 横屏移动设备 ===== */
 @media screen and (max-height: 500px) and (orientation: landscape) {
   .nav-fullscreen__menu {
-    gap: var(--spacing-sm);
+    gap: 0.25rem; /* 保持一致的小间距 */
   }
   
   .nav-fullscreen__link {

@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const header = document.querySelector('.header');
   const menuLines = document.querySelectorAll('.header__menu-line');
   const socialLinks = document.querySelectorAll('.nav-fullscreen__social-link');
+  const navImages = document.querySelectorAll('.nav-fullscreen__image');
   
   // 检查元素是否存在
   if (!menuBtn || !navFullscreen || menuLines.length !== 2) {
@@ -23,6 +24,59 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // ===== 菜单状态 =====
   let isMenuOpen = false;
+  let currentImageIndex = null; // 当前显示的图片索引
+  let imagesPreloaded = false; // 图片是否已预加载
+  
+  // ===== 预加载所有图片 =====
+  function preloadImages() {
+    if (imagesPreloaded) return;
+    
+    navImages.forEach(img => {
+      // 强制浏览器加载图片
+      const imgElement = new Image();
+      imgElement.src = img.src;
+    });
+    
+    imagesPreloaded = true;
+  }
+  
+  // ===== 图片切换函数（纯 CSS 版本：极速） =====
+  function switchImage(imageId) {
+    // 如果是同一张图片，不需要切换
+    if (currentImageIndex === imageId) return;
+    
+    // 找到目标图片
+    const targetImage = document.querySelector(`.nav-fullscreen__image[data-image="${imageId}"]`);
+    
+    if (!targetImage) return;
+    
+    // 移除所有激活状态（CSS transition 会自动处理动画）
+    navImages.forEach(img => {
+      if (img !== targetImage) {
+        img.classList.remove('is-active');
+      }
+    });
+    
+    // 激活目标图片
+    targetImage.classList.add('is-active');
+    
+    currentImageIndex = imageId;
+  }
+  
+  // ===== 带节流的图片切换（快速滑动时使用） =====
+  let isThrottled = false;
+  function switchImageThrottled(imageId) {
+    // 直接切换，不等待
+    switchImage(imageId);
+    
+    // 简单的节流，避免过于频繁
+    if (!isThrottled) {
+      isThrottled = true;
+      setTimeout(() => {
+        isThrottled = false;
+      }, 30); // 30ms 节流，更灵敏
+    }
+  }
   
   // ===== 分割菜单文字为字符（双层结构用于交换动画） =====
   function splitTextToChars(element) {
@@ -115,9 +169,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
   
+  // 图片初始状态由 CSS 控制，无需 JavaScript 设置
+  
   // ===== 打开菜单动画 =====
   function openMenu() {
     isMenuOpen = true;
+    
+    // 预加载图片（首次打开时）
+    preloadImages();
     
     // 保存滚动位置并固定页面
     const scrollY = window.scrollY;
@@ -196,6 +255,11 @@ document.addEventListener('DOMContentLoaded', function() {
         ease: 'power3.out'
       }, 1.3);
     }
+    
+    // 6. 显示第一张图片（延迟0.5秒，与菜单同步开始显示）
+    openTimeline.add(() => {
+      switchImage('1');
+    }, 0.5);
   }
   
   // ===== 关闭菜单动画 =====
@@ -232,6 +296,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (navFooter) {
           gsap.set(navFooter, { y: 20, opacity: 0 });
         }
+        
+        // 重置图片状态
+        navImages.forEach(img => {
+          img.classList.remove('is-active');
+        });
+        currentImageIndex = null;
       }
     });
     
@@ -365,6 +435,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // ===== 事件监听器：为所有菜单项添加悬停效果 =====
   navLinks.forEach(link => {
     addLetterSwapHover(link);
+    
+    // 添加图片切换悬停事件（使用节流版本）
+    link.addEventListener('mouseenter', () => {
+      const imageId = link.getAttribute('data-image');
+      if (imageId && isMenuOpen) {
+        switchImageThrottled(imageId);
+      }
+    });
   });
   
   // ===== 事件监听器：为社交链接添加悬停效果 =====
@@ -444,5 +522,19 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   console.log('✅ Navigation.js 已初始化');
+  
+  // ===== 页面空闲时预加载图片 =====
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      preloadImages();
+      console.log('✅ 导航图片已预加载');
+    });
+  } else {
+    // 如果不支持 requestIdleCallback，延迟 1 秒后加载
+    setTimeout(() => {
+      preloadImages();
+      console.log('✅ 导航图片已预加载');
+    }, 1000);
+  }
   
 });

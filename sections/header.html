@@ -17,21 +17,24 @@
 <!-- 全屏导航菜单 -->
 <nav class="nav-fullscreen">
   <div class="nav-fullscreen__container">
-    <!-- 菜单列表 -->
-    <ul class="nav-fullscreen__menu">
-      <li class="nav-fullscreen__item">
-        <a href="index.html" class="nav-fullscreen__link">HOME</a>
-      </li>
-      <li class="nav-fullscreen__item">
-        <a href="about.html" class="nav-fullscreen__link">ABOUT</a>
-      </li>
-      <li class="nav-fullscreen__item">
-        <a href="works.html" class="nav-fullscreen__link">WORKS</a>
-      </li>
-      <li class="nav-fullscreen__item">
-        <a href="contact.html" class="nav-fullscreen__link">CONTACT</a>
-      </li>
-    </ul>
+    
+    <!-- 左侧菜单区域 -->
+    <div class="nav-fullscreen__left">
+      <!-- 菜单列表 -->
+      <ul class="nav-fullscreen__menu">
+        <li class="nav-fullscreen__item">
+          <a href="index.html" class="nav-fullscreen__link" data-image="1">HOME</a>
+        </li>
+        <li class="nav-fullscreen__item">
+          <a href="about.html" class="nav-fullscreen__link" data-image="2">ABOUT</a>
+        </li>
+        <li class="nav-fullscreen__item">
+          <a href="works.html" class="nav-fullscreen__link" data-image="3">WORKS</a>
+        </li>
+        <li class="nav-fullscreen__item">
+          <a href="contact.html" class="nav-fullscreen__link" data-image="4">CONTACT</a>
+        </li>
+      </ul>
 
       <!-- 底部信息 -->
       <div class="nav-fullscreen__footer">
@@ -42,5 +45,17 @@
           <a href="#" class="nav-fullscreen__social-link">WeChat</a>
         </div>
       </div>
+    </div>
+
+    <!-- 右侧图片区域 -->
+    <div class="nav-fullscreen__right">
+      <div class="nav-fullscreen__image-container">
+        <img src="assets/images/1.jpg" alt="Home" class="nav-fullscreen__image" data-image="1">
+        <img src="assets/images/2.jpg" alt="About" class="nav-fullscreen__image" data-image="2">
+        <img src="assets/images/3.jpg" alt="Works" class="nav-fullscreen__image" data-image="3">
+        <img src="assets/images/4.jpg" alt="Contact" class="nav-fullscreen__image" data-image="4">
+      </div>
+    </div>
+
   </div>
 </nav>
