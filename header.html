@@ -1,0 +1,97 @@
+<!-- 导航栏 -->
+<header class="header">
+  <div class="header__container">
+    <!-- Logo -->
+    <a href="index.html" class="header__logo">
+      <img src="assets/icons/logo.svg" alt="HR Logo" class="header__logo-img" />
+    </a>
+
+    <!-- 菜单按钮 -->
+    <button
+      class="header__menu-btn"
+      aria-label="打开导航菜单"
+      aria-expanded="false"
+    >
+      <span class="header__menu-line"></span>
+      <span class="header__menu-line"></span>
+    </button>
+  </div>
+</header>
+
+<!-- 全屏导航菜单 -->
+<nav class="nav-fullscreen">
+  <div class="nav-fullscreen__container">
+    <!-- 左侧菜单区域 -->
+    <div class="nav-fullscreen__left">
+      <!-- 菜单列表 -->
+      <ul class="nav-fullscreen__menu">
+        <li class="nav-fullscreen__item">
+          <a href="index.html" class="nav-fullscreen__link" data-image="1"
+            >HOME</a
+          >
+        </li>
+        <li class="nav-fullscreen__item">
+          <a href="about.html" class="nav-fullscreen__link" data-image="2"
+            >ABOUT</a
+          >
+        </li>
+        <li class="nav-fullscreen__item">
+          <a href="works.html" class="nav-fullscreen__link" data-image="3"
+            >WORKS</a
+          >
+        </li>
+        <li class="nav-fullscreen__item">
+          <a href="contact.html" class="nav-fullscreen__link" data-image="4"
+            >CONTACT</a
+          >
+        </li>
+      </ul>
+
+      <!-- 底部信息 -->
+      <div class="nav-fullscreen__footer">
+        <p class="nav-fullscreen__footer-text">© 2025 HR Portfolio</p>
+        <div class="nav-fullscreen__social">
+          <a
+            href="https://github.com/yourusername"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="nav-fullscreen__social-link"
+            >GitHub</a
+          >
+          <a href="#" class="nav-fullscreen__social-link">QQ</a>
+          <a href="#" class="nav-fullscreen__social-link">WeChat</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右侧图片区域 -->
+    <div class="nav-fullscreen__right">
+      <div class="nav-fullscreen__image-container">
+        <img
+          src="assets/images/1.jpg"
+          alt="Home"
+          class="nav-fullscreen__image"
+          data-image="1"
+        />
+        <img
+          src="assets/images/2.jpg"
+          alt="About"
+          class="nav-fullscreen__image"
+          data-image="2"
+        />
+        <img
+          src="assets/images/3.jpg"
+          alt="Works"
+          class="nav-fullscreen__image"
+          data-image="3"
+        />
+        <img
+          src="assets/images/4.jpg"
+          alt="Contact"
+          class="nav-fullscreen__image"
+          data-image="4"
+        />
+      </div>
+    </div>
+  </div>
+</nav>
