@@ -19,13 +19,19 @@
       rel="stylesheet"
     />
 
+    <!-- 预加载导航图片以避免打开菜单时卡顿 -->
+    <link rel="preload" as="image" href="assets/images/1.jpg" />
+    <link rel="preload" as="image" href="assets/images/2.jpg" />
+    <link rel="preload" as="image" href="assets/images/3.jpg" />
+    <link rel="preload" as="image" href="assets/images/4.jpg" />
+
     <!-- CSS 样式表 - 按顺序加载 -->
-    <link rel="stylesheet" href="css/reset.css?v=2" />
-    <link rel="stylesheet" href="css/variables.css?v=2" />
-    <link rel="stylesheet" href="css/base.css?v=2" />
-    <link rel="stylesheet" href="css/style.css?v=2" />
-    <link rel="stylesheet" href="css/sections/header.css?v=2" />
-    <link rel="stylesheet" href="css/responsive.css?v=2" />
+    <link rel="stylesheet" href="css/reset.css?v=4" />
+    <link rel="stylesheet" href="css/variables.css?v=4" />
+    <link rel="stylesheet" href="css/base.css?v=4" />
+    <link rel="stylesheet" href="css/style.css?v=4" />
+    <link rel="stylesheet" href="css/sections/header.css?v=4" />
+    <link rel="stylesheet" href="css/responsive.css?v=4" />
   </head>
   <body>
     <!-- 导航栏 -->
@@ -106,24 +112,32 @@
               alt="Home"
               class="nav-fullscreen__image"
               data-image="1"
+              decoding="async"
+              loading="eager"
             />
             <img
               src="assets/images/2.jpg"
               alt="About"
               class="nav-fullscreen__image"
               data-image="2"
+              decoding="async"
+              loading="eager"
             />
             <img
               src="assets/images/3.jpg"
               alt="Works"
               class="nav-fullscreen__image"
               data-image="3"
+              decoding="async"
+              loading="eager"
             />
             <img
               src="assets/images/4.jpg"
               alt="Contact"
               class="nav-fullscreen__image"
               data-image="4"
+              decoding="async"
+              loading="eager"
             />
           </div>
         </div>
@@ -150,6 +164,7 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.min.js"></script>
 
     <!-- 项目脚本 -->
+    <script src="js/utils.js"></script>
     <script src="js/main.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/animations.js"></script>

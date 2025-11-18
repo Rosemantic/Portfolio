@@ -6,7 +6,7 @@
 /* ===== 全局样式 ===== */
 html {
   font-size: var(--font-size-base);
-  scroll-behavior: smooth;
+  /* scroll-behavior 由 Lenis 处理 */
 }
 
 body {
@@ -20,7 +20,12 @@ body {
 }
 
 /* ===== 排版 ===== */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   margin-bottom: var(--spacing-md);
@@ -142,11 +147,11 @@ section {
 /* ===== 响应式 ===== */
 @media screen and (max-width: 1023px) {
   /* padding-top 由 clamp 自动适配 */
-  
+
   section {
     padding: var(--spacing-3xl) 0;
   }
-  
+
   .container {
     padding: 0 var(--container-padding-mobile);
   }

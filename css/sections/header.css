@@ -141,6 +141,9 @@ body.menu-open .header__logo-img {
   left: 0;
   width: 100%;
   height: 100%;
+  /* 优化渲染性能 - 菜单未打开时跳过渲染 */
+  content-visibility: auto;
+  contain: layout style paint;
 }
 
 /* 单个图片 */
@@ -154,23 +157,21 @@ body.menu-open .header__logo-img {
   visibility: hidden;
   object-fit: cover;
   object-position: center;
-  /* 黑白滤镜 */
-  filter: grayscale(100%) contrast(1.1);
   /* 初始缩放 */
   transform: scale(1.1) translateZ(0);
-  /* 性能优化 */
+  /* 性能优化 - GPU 加速 */
   will-change: opacity, transform;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
   /* 图片渲染优化 */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  /* 强制 GPU 加速 */
-  -webkit-font-smoothing: subpixel-antialiased;
+  image-rendering: auto;
+  /* 强制硬件加速 */
+  -webkit-transform: translateZ(0);
   /* CSS 过渡（极速） */
-  transition: opacity 0.15s ease-out, transform 0.2s ease-out, visibility 0s linear 0s;
+  transition: opacity 0.2s ease-out, transform 0.25s ease-out,
+    visibility 0s linear 0s;
 }
 
 /* 激活的图片 */
@@ -186,7 +187,7 @@ body.menu-open .header__logo-img {
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 0.25rem; /* 4px - 非常小的间距 */
+  gap: 0; /* 移除菜单项之间的间距 */
   flex: 1;
   overflow: visible; /* 允许背景在菜单内溢出，但被父容器限制 */
 }
@@ -213,21 +214,21 @@ body.menu-open .header__logo-img {
   /* 启用3D变换 */
   transform-style: preserve-3d;
   /* 添加内边距 */
-  padding: 0.4em 0;
+  padding: 0.2em 0;
   /* 过渡效果 - 加快速度 */
   transition: color 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* 悬停时的背景（使用伪元素实现平滑过渡） */
 .nav-fullscreen__link::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: calc(-1 * var(--spacing-2xl)); /* 向左延伸到容器边缘 */
   right: calc(-1 * var(--spacing-2xl)); /* 向右延伸到容器边缘 */
   width: auto;
   height: 100%;
-  background-color: #F4F4F4; /* 浅灰色背景 */
+  background-color: #ffffff; /* 纯白色背景 */
   border-radius: 0;
   transform: scaleX(0);
   transform-origin: left; /* 从左边开始展开 */
@@ -238,7 +239,7 @@ body.menu-open .header__logo-img {
   backface-visibility: hidden;
 }
 
-/* 悬停时展开浅灰色背景 */
+/* 悬停时展开白色背景 */
 .nav-fullscreen__link:hover::before {
   transform: scaleX(1);
 }
@@ -254,7 +255,7 @@ body.menu-open .header__logo-img {
   position: relative;
   overflow: hidden;
   vertical-align: top;
-  height: 1em;  /* 设置固定高度 */
+  height: 1em; /* 设置固定高度 */
   line-height: 1em;
   z-index: 1;
 }
@@ -280,7 +281,12 @@ body.menu-open .header__logo-img {
 
 /* 当前页面的菜单项高亮 */
 .nav-fullscreen__link.is-active {
-  color: rgba(255, 255, 255, 0.5);
+  color: #272727; /* 深色文字 */
+}
+
+/* 当前页面菜单项的背景 */
+.nav-fullscreen__link.is-active::before {
+  transform: scaleX(1); /* 显示白色背景 */
 }
 
 /* ===== 菜单底部信息 ===== */
@@ -347,22 +353,22 @@ body.menu-open .header__logo-img {
   .header__container {
     padding: 0 var(--spacing-md);
   }
-  
+
   .header__menu-btn {
     width: 44px;
     height: 44px;
   }
-  
+
   .header__menu-line {
     width: 26px;
   }
-  
+
   /* 平板改为上下布局 */
   .nav-fullscreen__container {
     grid-template-columns: 1fr;
     grid-template-rows: 60% 40%;
   }
-  
+
   .nav-fullscreen__left {
     padding: var(--spacing-xl) var(--spacing-md);
   }
@@ -373,40 +379,40 @@ body.menu-open .header__logo-img {
   .header__container {
     padding: 0 var(--spacing-md);
   }
-  
+
   /* 移动端隐藏右侧图片区域 */
   .nav-fullscreen__container {
     grid-template-columns: 1fr;
   }
-  
+
   .nav-fullscreen__right {
     display: none;
   }
-  
+
   .nav-fullscreen__left {
     padding: var(--spacing-xl) var(--spacing-md);
   }
-  
+
   .nav-fullscreen__footer {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--spacing-md);
   }
-  
+
   .nav-fullscreen__social {
     flex-direction: column;
     gap: var(--spacing-sm);
   }
-  
+
   .nav-fullscreen__menu {
-    gap: 0.25rem; /* 保持一致的小间距 */
+    gap: 0; /* 保持一致 */
   }
-  
+
   .header__menu-btn {
     width: 40px;
     height: 40px;
   }
-  
+
   .header__menu-line {
     width: 24px;
   }
@@ -416,12 +422,3 @@ body.menu-open .header__logo-img {
 .header.is-hidden {
   transform: translateY(-100%);
 }
-
-/* ===== 导航栏背景模糊效果（已禁用） ===== */
-/* @supports (backdrop-filter: blur(10px)) {
-  .header {
-    background-color: rgba(244, 244, 244, 0.8);
-    backdrop-filter: blur(10px);
-  }
-} */
-

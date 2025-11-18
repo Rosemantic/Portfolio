@@ -130,6 +130,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 /* 18. 移除 iOS 上的触摸高亮 */
@@ -170,12 +171,12 @@ summary::-webkit-details-marker {
   display: none !important;
 }
 
-/* 23. 平滑滚动（可选，如果使用 Lenis 可以移除） */
-@media (prefers-reduced-motion: no-preference) {
+/* 23. 平滑滚动已由 Lenis 处理，此处不需要 */
+/* @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
-}
+} */
 
 /* 24. 为使用动画的用户提供减少动画的选项 */
 @media (prefers-reduced-motion: reduce) {

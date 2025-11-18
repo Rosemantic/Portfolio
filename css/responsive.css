@@ -21,7 +21,7 @@
   html {
     font-size: 14px;
   }
-  
+
   /* 移动端字体大小调整 */
   :root {
     --font-size-h1: clamp(2.5rem, 10vw, 4rem);
@@ -57,9 +57,9 @@
 /* ===== 横屏移动设备 ===== */
 @media screen and (max-height: 500px) and (orientation: landscape) {
   .nav-fullscreen__menu {
-    gap: 0.25rem; /* 保持一致的小间距 */
+    gap: 0; /* 与主样式保持一致 */
   }
-  
+
   .nav-fullscreen__link {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
   }
@@ -72,7 +72,7 @@
   .header__menu-btn {
     display: none !important;
   }
-  
+
   main {
     padding-top: 0;
   }

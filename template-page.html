@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="HR Portfolio - 现代化个人作品集网站" />
+    <title>HR Portfolio - 模板页面</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg" />
+
+    <!-- Google Fonts: Poppins (使用国内CDN镜像) -->
+    <link rel="preconnect" href="https://fonts.font.im" />
+    <link
+      href="https://fonts.font.im/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- 预加载导航图片以避免打开菜单时卡顿 -->
+    <link rel="preload" as="image" href="assets/images/1.jpg" />
+    <link rel="preload" as="image" href="assets/images/2.jpg" />
+    <link rel="preload" as="image" href="assets/images/3.jpg" />
+    <link rel="preload" as="image" href="assets/images/4.jpg" />
+
+    <!-- CSS 样式表 - 按顺序加载 -->
+    <link rel="stylesheet" href="css/reset.css?v=4" />
+    <link rel="stylesheet" href="css/variables.css?v=4" />
+    <link rel="stylesheet" href="css/base.css?v=4" />
+    <link rel="stylesheet" href="css/style.css?v=4" />
+    <link rel="stylesheet" href="css/sections/header.css?v=4" />
+    <link rel="stylesheet" href="css/responsive.css?v=4" />
+  </head>
+  <body>
+    <!-- 🎯 动态加载导航栏 - 只需要这一行！ -->
+    <div data-include="sections/header.html"></div>
+
+    <!-- 主内容区域 -->
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1>模板页面</h1>
+          <p>导航栏通过 data-include 自动加载，确保所有页面同步更新</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- JavaScript 库和脚本 - 按顺序加载 -->
+    <!-- GSAP 核心库 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+    <!-- GSAP ScrollTrigger 插件 -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <!-- Lenis 平滑滚动 -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.min.js"></script>
+
+    <!-- 项目脚本 - 注意顺序：include.js 必须在最前面 -->
+    <script src="js/include.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/animations.js"></script>
+  </body>
+</html>
